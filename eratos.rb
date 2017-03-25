@@ -1,19 +1,19 @@
 num = ARGV[0].to_i
 
-prime_list = []
+search_list = []
 (2..num).each do |i|
-  prime_list.push(i)
+  search_list << i
 end
 
-search_list = []
+prime_list = []
 loop do
-  head_value = prime_list.first
-  search_list.push(head_value)
-  prime_list.reject! {|item| item % head_value == 0 }
+  head_value = search_list.first
+  prime_list << head_value
+  search_list.reject! {|item| item % head_value == 0 }
   if head_value >= Math.sqrt(num)
-    search_list.concat(prime_list)
+    prime_list.concat(search_list)
     break
   end
 end
 
-puts search_list.to_s.delete("[]")
+puts prime_list.to_s.delete('[]')
